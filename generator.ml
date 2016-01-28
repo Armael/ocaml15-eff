@@ -101,11 +101,7 @@ let benchmark f n =
 
 (* Main follows *)
 
-let n =
-  try
-    int_of_string (Sys.argv.(1))
-  with
-  | _ -> 25
+let n = 5
 
 let t = Tree.deep n
 

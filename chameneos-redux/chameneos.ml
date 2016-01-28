@@ -107,12 +107,7 @@ let work colors n =
   spell_int sum_meets; printf "\n"
 
 let main () =
-  let n =
-    try
-      int_of_string (Sys.argv.(1))
-    with
-    | _ -> 600
-  in
+  let n = 100 in
   print_complements ();
   let module C = Color in
   work [ C.Blue; C.Red; C.Yellow ] n;
