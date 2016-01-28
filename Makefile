@@ -2,6 +2,11 @@ include config.mk
 
 all: concurrent generator reify_reflect simple
 
+js: simple_2 concurrent reify_reflect
+	$(JSOO_PATH)/compiler/js_of_ocaml --no-runtime $(JSOO_PATH)/runtime/runtime.js simple_2
+	$(JSOO_PATH)/compiler/js_of_ocaml --no-runtime $(JSOO_PATH)/runtime/runtime.js concurrent
+	$(JSOO_PATH)/compiler/js_of_ocaml --no-runtime $(JSOO_PATH)/runtime/runtime.js reify_reflect
+
 simple: simple_1 simple_2
 
 simple_1: simple_1.ml
@@ -21,6 +26,6 @@ reify_reflect: reify_reflect.ml
 
 clean:
 	rm -f *.cmi *.cmo *.o concurrent generator *~ a.out state reify_reflect ref \
-		transaction aio simple_1 simple_2 *cmx
+		transaction aio simple_1 simple_2 *cmx *.js
 	make -Cchameneos-redux clean
 	make -Casync-io clean

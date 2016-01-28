@@ -21,9 +21,12 @@ chameneos-ghc: chameneos.hs
 chameneos-eff: chameneos.ml
 	$(OCAMLC) -o chameneos-eff sched.mli sched.ml MVar.mli MVar.ml chameneos.ml
 
+chameneos-js: chameneos-eff
+	$(JSOO_PATH)/compiler/js_of_ocaml --no-runtime $(JSOO_PATH)/runtime/runtime.js chameneos-eff
+
 chameneos-monad: chameneos_monad.ml
 	$(OCAMLC) -o chameneos_monad sched_monad.mli sched_monad.ml MVar_monad.mli MVar_monad.ml chameneos_monad.ml
 
 clean:
 	rm -f *.cmi *.cmx a.out *~ eff *.cmo MVar_test chameneos-eff chameneos-ghc \
-	*.hi *.o chameneos-systhr chameneos-lwt *.annot *.s op chameneos_monad *.prof_*
+	*.hi *.o chameneos-systhr chameneos-lwt *.annot *.s op chameneos_monad *.prof_* *.js

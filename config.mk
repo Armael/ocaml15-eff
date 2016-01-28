@@ -1,1 +1,2 @@
 OCAMLC=ocamlc
+JSOO_PATH=
